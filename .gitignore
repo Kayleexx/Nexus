@@ -1,0 +1,15 @@
+/target
+**/*.rs.bk
+**/*.swp
+**/*.swo
+Cargo.lock
+.DS_Store
+*.log
+*.tmp
+.idea/
+.vscode/
+output.*
+node_modules/
+dist/
+build/
+.env
