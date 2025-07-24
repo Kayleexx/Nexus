@@ -8,7 +8,7 @@ use crate::analyzer::errors::ParseError;
 pub fn get_parsers() -> Vec<Box<dyn LanguageParser>> {
     vec![
         Box::new(RustParser),
-        // Add more parsers here: PythonParser, JsParser, etc.
+        // more parsers here: PythonParser, JsParser, etc.
     ]
 }
 
@@ -19,7 +19,7 @@ pub fn parse_file_with_matching_parser<P: AsRef<Path>>(
 ) -> Result<(String, Vec<String>), ParseError> {
     let path = path.as_ref();
 
-    let content = fs::read_to_string(path)?; // Uses `From<std::io::Error>` for `?`
+    let content = fs::read_to_string(path)?; \
 
     for parser in parsers {
         for &ext in parser.file_extension() {
