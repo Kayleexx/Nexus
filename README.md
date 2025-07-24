@@ -41,7 +41,11 @@ cargo run -- --path ./src --output graph.dot --format dot --detect-cycles false
 
 ## Output
 
-The tool outputs a `.dot` file representing the dependency graph. You can render it using Graphviz:
+The tool outputs a `.dot` file representing the dependency graph. You can render it using Graphviz.
+
+<img width="898" height="933" alt="image" src="https://github.com/user-attachments/assets/4b7a0ecb-8356-4586-b312-68e140b6b01d" />
+<img width="843" height="930" alt="image" src="https://github.com/user-attachments/assets/e936faf2-4a80-4b95-802d-a2e9b2d1c945" />
+
 
 ```bash
 dot -Tpng output.dot -o graph.png
