@@ -1,4 +1,7 @@
 pub mod rust;
+pub mod python;
+pub mod javascript;
+pub mod java;
 pub mod parser_registry;
 use crate::analyzer::errors::ParseError;
 

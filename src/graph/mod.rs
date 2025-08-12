@@ -1,7 +1,7 @@
 use std::collections::{HashMap, HashSet};
 use std::fs::File;
 use std::io::{self, Write as IoWrite};
-use std::fmt::Write as FmtWrite; // 🔧 bring `write!` and `writeln!` for String
+use std::fmt::Write as FmtWrite; 
 
 #[derive(Debug)]
 pub struct DepGraph {

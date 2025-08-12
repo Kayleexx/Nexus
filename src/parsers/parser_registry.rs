@@ -1,40 +1,56 @@
+use crate::parsers::{
+    rust::RustParser,
+    python::PythonParser,
+    javascript::JavaScriptParser,
+    java::JavaParser,
+    LanguageParser,
+};
 use std::fs;
-use std::path::Path;
 
-use crate::parsers::{LanguageParser, rust::RustParser};
-use crate::analyzer::errors::ParseError;
-
-/// Holds all available language parsers
+/// Returns all available language parsers.
+/// Add new ones here to extend multi-language support.
 pub fn get_parsers() -> Vec<Box<dyn LanguageParser>> {
     vec![
         Box::new(RustParser),
-        // Add more parsers here: PythonParser, JsParser, etc.
+        Box::new(PythonParser),
+        Box::new(JavaScriptParser),
+        Box::new(JavaParser),
     ]
 }
 
-/// Select appropriate parser based on file extension
-pub fn parse_file_with_matching_parser<P: AsRef<Path>>(
-    path: P,
+/// Match file extensions to language names.
+fn get_language_by_extension(path: &str) -> Option<&'static str> {
+    match std::path::Path::new(path)
+        .extension()
+        .and_then(|ext| ext.to_str())
+    {
+        Some("rs") => Some("Rust"),
+        Some("py") => Some("Python"),
+        Some("js") | Some("ts") => Some("JavaScript/TypeScript"),
+        Some("java") => Some("Java"),
+        _ => None,
+    }
+}
+
+/// Try to find a matching parser for a given file.
+/// If a parser matches, it parses the file and returns dependencies.
+pub fn parse_file_with_matching_parser(
+    path: &std::path::Path,
     parsers: &[Box<dyn LanguageParser>],
-) -> Result<(String, Vec<String>), ParseError> {
-    let path = path.as_ref();
+) -> Result<(String, Vec<String>), String> {
+    let file_content = fs::read_to_string(path)
+        .map_err(|e| format!("Failed to read file {}: {}", path.display(), e))?;
 
-    let content = fs::read_to_string(path)?; // Uses `From<std::io::Error>` for `?`
-
-    for parser in parsers {
-        for &ext in parser.file_extension() {
-            if let Some(file_ext) = path.extension().and_then(|e| e.to_str()) {
-                if file_ext == ext {
-                    let deps = parser.parse_file(&content)?;
-                    let file_name = path.to_string_lossy().to_string();
-                    return Ok((file_name, deps));
-                }
+    if let Some(lang) = get_language_by_extension(path.to_str().unwrap_or_default()) {
+        for parser in parsers {
+            if parser.language_name() == lang {
+                let deps = parser
+                    .parse_file(&file_content)
+                    .map_err(|e| format!("Parse error in {}: {:?}", path.display(), e))?;
+                return Ok((path.display().to_string(), deps));
             }
         }
     }
 
-    Err(ParseError::InvalidSyntax(format!(
-        "No parser found for file: {}",
-        path.display()
-    )))
+    Err(format!("No parser found for {}", path.display()))
 }
