@@ -8,7 +8,7 @@
 - Generate dependency graph in DOT format
 - Detect circular dependencies
 - Traverse entire source directory
-- Modular parser system (currently supports Rust)
+- Modular parser system (currently supports Rust, Javascript, Python and Java)
 
 ## Usage
 
