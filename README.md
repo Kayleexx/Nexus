@@ -10,6 +10,18 @@
 - Traverse entire source directory
 - Modular parser system (currently supports Rust, Javascript, Python and Java)
 
+## Project Structure
+
+```
+nexus/
+├── src/
+│   ├── main.rs          # CLI entrypoint
+│   ├── graph/           # Graph construction and cycle detection
+│   ├── parsers/         # Rust parser module
+│   ├── utils/           # File system walking logic
+│   └── analyzer/        # Central analyzer logic
+```
+
 ## Usage
 
 ### Build
@@ -50,17 +62,7 @@ dot -Tpng output.dot -o graph.png
 <img width="500" height="933" alt="image" src="https://github.com/user-attachments/assets/4b7a0ecb-8356-4586-b312-68e140b6b01d" />
 
 <img width="500" height="930" alt="image" src="https://github.com/user-attachments/assets/e936faf2-4a80-4b95-802d-a2e9b2d1c945" />
-
-## Project Structure
-
-```
-nexus/
-├── src/
-│   ├── main.rs          # CLI entrypoint
-│   ├── graph/           # Graph construction and cycle detection
-│   ├── parsers/         # Rust parser module
-│   ├── utils/           # File system walking logic
-│   └── analyzer/        # Central analyzer logic
-```
+![GyKXq7pWAAEGUU3](https://github.com/user-attachments/assets/377cc40d-2135-42ff-b2ab-62619a8ae9e0)
+<img width="1511" height="155" alt="GyKXrqsXoAA0Wm-" src="https://github.com/user-attachments/assets/615ff10f-9468-4ac0-9f65-71caf8a33d38" />
 
 
