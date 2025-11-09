@@ -62,5 +62,5 @@ dot -Tpng output.dot -o graph.png
 <img width="500" height="933" alt="image" src="https://github.com/user-attachments/assets/4b7a0ecb-8356-4586-b312-68e140b6b01d" />
 <img width="500" height="930" alt="image" src="https://github.com/user-attachments/assets/e936faf2-4a80-4b95-802d-a2e9b2d1c945" />
 <img width="1511" height="155" alt="GyKXrqsXoAA0Wm-" src="https://github.com/user-attachments/assets/615ff10f-9468-4ac0-9f65-71caf8a33d38" />
-
+<img width="1103" height="886" alt="image" src="https://github.com/user-attachments/assets/4947108b-a603-4fc3-8e9f-593ce7f218d0" />
 
